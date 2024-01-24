@@ -100,13 +100,6 @@ h1{
   box-shadow: 0 0 5px $_selected;
 }
 
-#file-controls {
-	position: fixed;
-	background: rgba(255,255,255,0.1);
-	top: 0;
-	right: 0;
-}
-
 .button {
   display: inline-block;
   background-color: $_default;
@@ -153,17 +146,6 @@ h1{
   }	
 }
 
-#audio {
-  rect {
-    display: inline-block;
-  }
-  &.mute {
-    rect {
-      display: none;
-    } 
-  }
-}
-
 .ripple {
   position: absolute;
   background:rgba(255, 255, 255, 0.35);
@@ -201,20 +183,24 @@ h1{
   }
 }
 
+#social-container.light, #social-container.light a {
+  color: rgba($_accent, 0.8);
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
 #social-container {
+  display: block;
+  position: fixed;
+  z-index: 9999;
+  bottom: 16px;
+  right: 16px;
+  text-align: right;
   opacity: 0.6;
 	bottom: 5px;
 	right: 5px;
 }
-#social-container p{
-	padding-bottom: 0;
-	margin-bottom: 0;
-}
 #social-container #social-links a {
 	font-size: 2rem;
-}
-#social-message {
-	font-size: 0.8rem;
 }
 
 @keyframes line {

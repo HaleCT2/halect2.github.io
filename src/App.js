@@ -1,7 +1,9 @@
+import { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faGithub } from '@fortawesome/free-brands-svg-icons'
 import { ReactComponent as PlayButton } from './play.svg';
 import { ReactComponent as ResetButton } from './reset.svg';
 import './App.scss';
-import { useState } from 'react';
 
 const buttons = 256;
 
@@ -48,12 +50,18 @@ function App() {
     setHistory([...history, newCells]);
   }
 
-  return (
+  return (<div>
     <div id="aligner">
     <h1>automata</h1>
     <Board cells={currentCells} onUse={handlePlay}/>
     <Controls reset={() => handlePlay(Array(buttons).fill(false))}/>
     </div>
+    <div id="social-container" className="light">
+      <div id="social-links">
+        <a href="https://github.com/HaleCT2"><FontAwesomeIcon icon={faGithub}/></a>
+      </div>
+    </div>
+  </div>
   );
 }
 
