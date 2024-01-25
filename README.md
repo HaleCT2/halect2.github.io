@@ -1,4 +1,4 @@
-# HaleCT2/halect2.github.io
+# halect2.github.io
    > Personal React Playground hosted on my GitHub User Page
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

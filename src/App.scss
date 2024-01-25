@@ -8,8 +8,8 @@ $noteSize: 24px;
 $spacer: 6px;
 $boardWidth: $cols * ($noteSize + $spacer);
 
-$mobileNoteSize: 20px;
-$mobileSpacer: 4px;
+$mobileNoteSize: 18px;
+$mobileSpacer: 3px;
 $mobileBoardWidth: $cols * ($mobileNoteSize + $mobileSpacer);
 
 $_bg: #5ec089 #bdb0a2;
@@ -126,6 +126,29 @@ h1{
   }
   &:hover > svg {
     fill: nth($_bg, 2);
+  }
+}
+
+.small-button {
+  @extend .button;
+
+  width: 30px;
+  height: 30px;
+  margin: 20px 5px;
+  
+  &-left {
+    @extend .small-button;
+    margin: 20px 5px 20px 25px;
+  }
+  &-right {
+    @extend .small-button;
+    margin: 20px 25px 20px 5px;
+  }
+  svg {
+    transform: translateY(5px);
+  }
+  &:active {
+    height: 25px;
   }
 }
 
