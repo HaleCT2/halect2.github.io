@@ -101,7 +101,7 @@ function App() {
               back={() => handlePlay(null,true)} 
               play={() => handlePlay(null,true)} 
               forward={() => handlePlay(null,true)} 
-              random={() => handlePlay([...Array(buttons)].map(_=>Math.random() > 0.5 ? true : false))}
+              random={() => handlePlay([...Array(buttons)].map(_=>Math.random() > 0.75 ? true : false))}
     />
     </div>
     <div id="social-container" className="light">
