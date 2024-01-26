@@ -53,6 +53,10 @@ h1{
   color: $_default;
   letter-spacing: 10px;
 }
+h3{
+  @extend h1;
+  letter-spacing: 5px;
+}
 
 #board {
   margin: 10px 0 0 0;
@@ -72,19 +76,6 @@ h1{
   margin: $spacer / 2;
   border-radius: 2px;
   background-color: $_default;
-}
-
-.forward .holder {
-  animation: line $speed linear infinite;
-  @for $i from 0 through $cols {
-    &:nth-child(#{$cols}n + #{$i}) {
-      animation-delay: $speed*($i / $rows);
-    }
-  }
-}
-
-.loading .holder {
-  animation: pulse 3s infinite;
 }
 
 .cell {
@@ -169,43 +160,6 @@ h1{
   }	
 }
 
-.ripple {
-  position: absolute;
-  background:rgba(255, 255, 255, 0.35);
-  border-radius: 100%;
-  width: $noteSize;
-  height: $noteSize;
-  z-index: -1;
-  opacity: 1;
-  transform:scale(0);
-}
-.huzzar {
-  opacity: 0; 
-  transform: scale(8);
-  transition: all 0.5s;
-}
-
-#markers {
-  text-align: center;
-  cursor: default;
-  margin: 10px 0 0 0;
-  position: relative;
-  flex: none;
-  width: $boardWidth;
-  font-size: 0;
-  span {
-    font-size: 2rem;
-    display: inline-block;
-    height: $noteSize;
-    width: $noteSize;
-    margin: $spacer / 2;
-    margin-bottom: 0;
-    background-color: none;
-    line-height: 8px;
-    color: $_default;
-  }
-}
-
 #social-container.light, #social-container.light a {
   color: rgba($_accent, 0.8);
   -webkit-transition: all 0.2s;
@@ -226,21 +180,6 @@ h1{
 	font-size: 2rem;
 }
 
-@keyframes line {
-  0%{
-    background: $_accent;
-  }
-  30%{
-    background: $_default;
-  }
-}
-   
-@keyframes pulse {
-  40%{
-    background: $_accent;
-  }
-}
-
 @media (max-width: $boardWidth){
 	#social-container #social-links {
 		display: none;
@@ -256,19 +195,6 @@ h1{
 	}
 	.note {
 		border-radius: 1;
-	}
-	.ripple {
-  		height: $mobileNoteSize;
-  		width: $mobileNoteSize;
-	}
-	
-	#markers {
-	  width: $mobileBoardWidth;
-	  span {
-		 height: $mobileNoteSize;
-		 width: $mobileNoteSize;
-		 margin: $mobileSpacer / 2;
-	  }
 	}
 }
 

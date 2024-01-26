@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
 import { ReactComponent as PlayButton } from './play.svg';
+import { ReactComponent as StopButton } from './stop.svg';
 import { ReactComponent as ResetButton } from './reset.svg';
 import { ReactComponent as RandomButton } from './random.svg';
 import { ReactComponent as BackButton } from './back.svg';
@@ -33,7 +34,7 @@ function Board({cells, onUse}) {
   )
 }
 
-function Controls({random, back, play, forward, reset}) {
+function Controls({random, back, forward, reset, play, status}) {
   return ( <div> 
     <div className="button" id="reset" onClick={random}>
       <RandomButton />
@@ -41,8 +42,8 @@ function Controls({random, back, play, forward, reset}) {
     <div className="small-button-left" id="back" onClick={back}>
       <BackButton />
     </div>
-    <div className="button" id="play" onClick={play}>
-      <PlayButton />
+    <div className="button" id="play" data-value={status} onClick={play}>
+      {(status) ? <StopButton /> : <PlayButton />}
     </div>
     <div className="small-button-right" id="forward" onClick={forward}>
       <ForwardButton />
@@ -56,14 +57,56 @@ function Controls({random, back, play, forward, reset}) {
 
 function App() {
   const [history, setHistory] = useState([Array(buttons).fill(false)]);
-  const currentCells = history[history.length - 1];
+  const [currentGen, setCurrentGen] = useState(0);
+  const [isPlaying, setPlay] = useState(false);
+  const currentCells = history[currentGen];
 
   function handlePlay(newCells, play=false) {
     if (!play) {
-        setHistory([...history, newCells]);
+      setHistory([newCells.slice()])
     } else {
+        if (isPlaying) {
+          stopGame();
+        }
+        const nextHistory = [...history.slice(0, currentGen + 1), nextGen(currentCells)];
         setHistory([...history, nextGen(currentCells)])
+        setCurrentGen(nextHistory.length - 1);
       }
+  }
+
+  const playGame = () => {
+    setPlay(true);
+    handlePlay(null, true); 
+  };
+
+  const stopGame = () => {
+    setPlay(false);
+  }
+
+  useEffect(() => {
+    if (currentGen > 0 && isPlaying) {
+        const timeoutID = setTimeout(() => {
+          const nextHistory = [...history.slice(0, currentGen + 1), nextGen(currentCells)];
+          setHistory([...history, nextGen(currentCells)])
+          setCurrentGen(nextHistory.length - 1);
+        }, 300);
+        return () => clearTimeout(timeoutID);
+    }
+  }, [history, currentGen, isPlaying, currentCells]);
+
+  function jumpTo(nextMove) {
+    if (isPlaying) {
+      stopGame();
+    }
+    // "-2" represents a Reset Generation
+    if (nextMove === -2) {
+      setHistory([Array(buttons).fill(false)])
+      setCurrentGen(0);
+    } else if (nextMove < 0) {
+        setCurrentGen(0);
+    } else {
+        setCurrentGen(nextMove);
+    }
   }
 
   function nextGen(cells) {
@@ -95,13 +138,14 @@ function App() {
   return (<div>
     <div id="aligner">
     <h1>automata</h1>
+    <h3>gen: {currentGen}</h3>
     <Board cells={currentCells} onUse={handlePlay}/>
-    <Controls reset={() => handlePlay(Array(buttons).fill(false))}
-              // TODO: Fix Back, Play, and Forward (need to incorporate jumpTo() function)
-              back={() => handlePlay(null,true)} 
-              play={() => handlePlay(null,true)} 
+    <Controls reset={() => jumpTo(-2)}
+              back={() => jumpTo(currentGen - 1)} 
               forward={() => handlePlay(null,true)} 
-              random={() => handlePlay([...Array(buttons)].map(_=>Math.random() > 0.75 ? true : false))}
+              random={() => {jumpTo(-2); handlePlay([...Array(buttons)].map(_=>Math.random() > 0.75 ? true : false))}}
+              play={(isPlaying) ? stopGame : playGame}
+              status={isPlaying}
     />
     </div>
     <div id="social-container" className="light">

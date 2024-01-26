@@ -3,6 +3,13 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+
+## Current Project(s)
+
+### Cellular Automata
+
+Making a React App to play [Conway's Game of Life](https://en.wikipedia.org/wiki/Conway's_Game_of_Life)!
+
 ## Scripts
 
 ### `npm start`
