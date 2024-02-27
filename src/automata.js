@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import { ReactComponent as PlayButton } from './play.svg';
 import { ReactComponent as StopButton } from './stop.svg';
 import { ReactComponent as ResetButton } from './reset.svg';
@@ -8,7 +10,7 @@ import { ReactComponent as RandomButton } from './random.svg';
 import { ReactComponent as BackButton } from './back.svg';
 import { ReactComponent as ForwardButton } from './forward.svg';
 
-import './App.scss';
+import './automata.scss';
 
 const buttons = 256;
 
@@ -55,7 +57,7 @@ function Controls({random, back, forward, reset, play, status}) {
 	)
 }
 
-function App() {
+function Automata() {
   const [history, setHistory] = useState([Array(buttons).fill(false)]);
   const [currentGen, setCurrentGen] = useState(0);
   const [isPlaying, setPlay] = useState(false);
@@ -135,8 +137,11 @@ function App() {
     return newCells;
   }
 
-  return (<div>
+  return (<div id="automata">
     <div id="aligner">
+    <div id="back-button" className="light">
+        <Link to={"/"}> <FontAwesomeIcon icon={faArrowLeft} /> </Link>
+    </div>
     <h1>automata</h1>
     <h3>gen: {currentGen}</h3>
     <Board cells={currentCells} onUse={handlePlay}/>
@@ -157,4 +162,4 @@ function App() {
   );
 }
 
-export default App;
+export default Automata;

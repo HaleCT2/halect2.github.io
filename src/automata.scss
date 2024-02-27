@@ -17,21 +17,24 @@ $_default: #8dac92;
 $_accent: #dce9de;
 $_selected: #FFF;
 
-html {
+#automata {
   min-height: 100%;
-  font-family: Poppins, Helvetica, Arial, sans-serif;
   background: nth($_bg, 1);
   background: linear-gradient(to bottom right, nth($_bg, 1), nth($_bg, 2)); 
-}
-body {
- height: 100%;
- margin: 0;
- font-size: 16px;
-} 
 
-body.no-overflow{
- overflow: hidden;	
+  h1{
+    font-weight: 600;
+    padding: 0;
+    margin: 0;
+    color: $_default;
+    letter-spacing: 10px;
+  }
+  h3{
+    @extend h1;
+    letter-spacing: 5px;
+  }
 }
+
 
 #aligner{
   height: 100%;
@@ -44,18 +47,6 @@ body.no-overflow{
 
 #aligner * {
   user-select: none;
-}
-
-h1{
-  font-weight: 600;
-  padding: 0;
-  margin: 0;
-  color: $_default;
-  letter-spacing: 10px;
-}
-h3{
-  @extend h1;
-  letter-spacing: 5px;
 }
 
 #board {
@@ -141,6 +132,24 @@ h3{
   &:active {
     height: 25px;
   }
+}
+
+#back-button.light, #back-button.light a {
+  color: rgba($_accent, 0.8);
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+#back-button {
+  display: block;
+  position: fixed;
+  z-index: 9999;
+  top: 16px;
+  left: 16px;
+  text-align: right;
+  opacity: 0.6;
+	top: 5px;
+	left: 5px;
+  font-size: 2rem;
 }
 
 .alt {
