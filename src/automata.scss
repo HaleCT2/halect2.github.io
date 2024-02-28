@@ -193,6 +193,9 @@ $_selected: #FFF;
 	#social-container #social-links {
 		display: none;
 	}
+  #back-button {
+		display: none;
+  }
 	#board {
 		width: $mobileBoardWidth;
 	}
