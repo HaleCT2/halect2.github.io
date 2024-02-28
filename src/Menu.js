@@ -5,8 +5,8 @@ import { useGesture } from '@use-gesture/react'
 
 import './Menu.scss';
 
-const calcX = (y, ly) => -(y - ly - window.innerHeight / 2) / 20
-const calcY = (x, lx) => (x - lx - window.innerWidth / 2) / 20
+const calcX = (y, ly) => -(y - ly - window.innerHeight / 2) / 10
+const calcY = (x, lx) => (x - lx - window.innerWidth / 2) / 10
 
 function App({appName, path}) {
   const target = useRef(null)
