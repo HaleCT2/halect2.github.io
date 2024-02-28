@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { useRef, useEffect } from 'react'
+import { useRef} from 'react'
 import { useSpring, animated, to } from '@react-spring/web'
 import { useGesture } from '@use-gesture/react'
 
@@ -9,17 +9,6 @@ const calcX = (y, ly) => -(y - ly - window.innerHeight / 2) / 20
 const calcY = (x, lx) => (x - lx - window.innerWidth / 2) / 20
 
 function App({appName, path}) {
-  useEffect(() => {
-    const preventDefault = (e) => e.preventDefault()
-    document.addEventListener('gesturestart', preventDefault)
-    document.addEventListener('gesturechange', preventDefault)
-
-    return () => {
-      document.removeEventListener('gesturestart', preventDefault)
-      document.removeEventListener('gesturechange', preventDefault)
-    }
-  }, [])
-
   const target = useRef(null)
   const [{ x, y, rotateX, rotateY, rotateZ, zoom, scale }, api] = useSpring(
     () => ({
@@ -36,16 +25,14 @@ function App({appName, path}) {
 
   useGesture(
     {
-      onPinch: ({ offset: [d, a] }) => api({ zoom: d / 200, rotateZ: a }),
-      onMove: ({ xy: [px, py], dragging }) =>
-        !dragging &&
+      onMove: ({ xy: [px, py]}) =>
         api({
           rotateX: calcX(py, y.get()),
           rotateY: calcY(px, x.get()),
           scale: 1.1,
         }),
-      onHover: ({ hovering }) =>
-        !hovering && api({ rotateX: 0, rotateY: 0, scale: 1 })
+      onHover: () =>
+        api({ rotateX: 0, rotateY: 0, scale: 1 })
     },
     { target, eventOptions: { passive: false } }
   )

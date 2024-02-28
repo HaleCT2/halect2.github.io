@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
-import { ReactComponent as PlayButton } from './play.svg';
-import { ReactComponent as StopButton } from './stop.svg';
-import { ReactComponent as ResetButton } from './reset.svg';
-import { ReactComponent as RandomButton } from './random.svg';
-import { ReactComponent as BackButton } from './back.svg';
-import { ReactComponent as ForwardButton } from './forward.svg';
+import { ReactComponent as PlayButton } from './icons/play.svg';
+import { ReactComponent as StopButton } from './icons/stop.svg';
+import { ReactComponent as ResetButton } from './icons/reset.svg';
+import { ReactComponent as RandomButton } from './icons/random.svg';
+import { ReactComponent as BackButton } from './icons/back.svg';
+import { ReactComponent as ForwardButton } from './icons/forward.svg';
 
 import './automata.scss';
 

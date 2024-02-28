@@ -38,7 +38,8 @@ $_accent: #dce9de;
     color: white;
     font-weight: bold;
     letter-spacing: .01em;
-    background: linear-gradient(135deg,nth($_bg, 1), nth($_bg, 2)); 
+    background: linear-gradient(135deg,nth($_bg, 1), nth($_bg, 2));
+    touch-action: none;
   }
 
   .card {
