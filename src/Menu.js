@@ -2,6 +2,7 @@ import { Link } from "react-router-dom"
 import { useRef} from 'react'
 import { useSpring, animated, to } from '@react-spring/web'
 import { useGesture } from '@use-gesture/react'
+import Container from 'react-bootstrap/Container';
 
 import './Menu.scss';
 
@@ -38,7 +39,7 @@ function App({appName, path}) {
   )
 
   return (
-    <div className="container">
+    <Container className="d-flex w-100 h-100 justify-content-center align-items-center mx-auto">
       <animated.div
         ref={target}
         className="card"
@@ -50,19 +51,19 @@ function App({appName, path}) {
           rotateX,
           rotateY,
           rotateZ,
-        }}> <Link to={path}> <h1 className={appName}>{appName}</h1> </Link>
+        }}> <Container className={appName}> <Link to={path}> {appName} </Link> </Container>
       </animated.div>
-    </div>
+    </Container>
   )
 }
 
 function Menu() {
-    return (<div id="Menu">
-        <h1> Web Playground </h1>
-        <div className="content">
-            <App appName={"automata"} path={"/automata"}/>
-        </div>
-    </div>
+    return (<Container className="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column" id="Menu">
+        <h1 className="header p-3 pb-md-4 mx-auto text-center"> Web Playground </h1>
+        <Container className="d-flex w-100 h-100 p-3 mx-auto flex-column text-center">
+          <App appName={"automata"} path={"/automata"}/>
+        </Container>
+    </Container>
     );
 }
 

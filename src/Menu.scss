@@ -2,48 +2,26 @@ $_bg: #2c8e57 #8b7e70;
 $_default: #8dac92;
 $_accent: #dce9de;
 
-#root {
-  background-color:#fff;
-  min-height: 100%;
-  height: 100%;
-}
-
 #Menu {
   background-color:#fff;
   min-height: 100%;
   overflow: hidden;
 
-  h1 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 25vh;
-  }
-
-  .content {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 75vh;
-  }
-
   a {
     text-decoration: none;
-    height: 100%;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-weight: bold;
-    letter-spacing: .01em;
+    color: $_accent;
     touch-action: none;
     user-select: none;
+    align-items: center;
+    justify-content: center;
+    display: flex;
   }
 
   .card {
     position: relative;
     width: 200px;
     height: 200px;
-    background: linear-gradient(135deg,nth($_bg, 1), nth($_bg, 2));
+    background: linear-gradient(135deg, nth($_bg, 1), nth($_bg, 2));
     border-radius: 5px;
     box-shadow: 0px 10px 30px -5px rgba(0, 0, 0, 0.3);
     transition: box-shadow 0.5s, opacity 0.5s;
@@ -71,17 +49,11 @@ $_accent: #dce9de;
     background-position: center center;
     margin: 0vw 0;
   }
-  
-  .container {
-    display: flex;
-    align-items: center;
-    height: 100%;
-    justify-content: center;
-    padding: 5%;
-  }
-}
 
-.automata {
-  color: $_accent;
-  letter-spacing: 5px;
+  .automata {
+    letter-spacing: 5px;
+    font-weight: bold;
+    text-align: center;
+    font-size: x-large;
+  }
 }
