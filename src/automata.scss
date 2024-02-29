@@ -96,9 +96,10 @@ $_selected: #FFF;
   
   svg {
     fill: rgba(255,255,255,0.5);
-    width: 20px;
-    height: 20px;
-    transform: translateY(15px);
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    transform: translate(-50%, 50%);
   }
   &:hover {
     background-color: $_accent;
@@ -127,7 +128,8 @@ $_selected: #FFF;
     margin: 20px 25px 20px 5px;
   }
   svg {
-    transform: translateY(5px);
+    width: 15px;
+    height: 15px;
   }
   &:active {
     height: 25px;
